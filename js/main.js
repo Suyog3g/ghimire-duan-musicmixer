@@ -1,73 +1,59 @@
-const circles = document.querySelectorAll('.circle');
-const dropZones = document.querySelectorAll('.drop-zone');
+let theMonk = document.querySelector(".monk"),
+    audioBox = document.querySelectorAll(".Audio-circles img"),
+    dropZones = document.querySelectorAll('.drop-zone'),
+    draggedBox;
 
-circles.forEach(circle => {
-  circle.addEventListener('dragstart', dragStart);
-});
-
-dropZones.forEach(zone => {
-  zone.addEventListener('dragover', dragOver);
-  zone.addEventListener('drop', drop);
-});
-
-function dragStart(e) {
-  e.dataTransfer.setData('text/plain', e.target.id);
+function handleStartDrag() { 
+    console.log('started dragging this box:', this);
+    draggedBox = this;
 }
 
-function dragOver(e) {
-  e.preventDefault();
+function handleDragOver(e) { 
+    e.preventDefault();
+    console.log('dragged over me'); 
 }
 
-function drop(e) {
-  e.preventDefault();
-  const data = e.dataTransfer.getData('text/plain');
-  const draggedElement = document.getElementById(data);
-  if (e.target.id === 'audio-drop-zone') {
-    // Play audio if dropped in audio drop zone
-    const audio = draggedElement.querySelector('audio');
-    if (audio) {
-      audio.play();
+function handleDrop(e) { 
+    e.preventDefault();
+   
+    if (this.children.length > 0) {
+        console.log("Already a box here");
+        return;
     }
-  }
-  e.target.appendChild(draggedElement);
+    this.appendChild(draggedBox);
+
+    
+    const audioURL = draggedBox.getAttribute('data-audio');
+    if (audioURL) {
+        const audio = new Audio(audioURL);
+        audio.play();
+    }
+
+    draggedBox.style.display = 'none';
 }
 
 
-const circle1 = document.getElementById('circle1');
-  const circle2 = document.getElementById('circle2');
-  const circle3 = document.getElementById('circle3');
-  const audio1 = document.getElementById('audio1');
-  const audio2 = document.getElementById('audio2');
-  const audio3 = document.getElementById('audio3');
+function shuffle(array) {
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
 
-  circle1.addEventListener('dragstart', function() {
-    audio1.currentTime = 0;
-    audio1.play();
-  });
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
 
-  circle2.addEventListener('dragstart', function() {
-    audio2.currentTime = 0;
-    audio2.play();
-  });
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
 
-  circle3.addEventListener('dragstart', function() {
-    audio3.currentTime = 0;
-    audio3.play();
-  });
-
-  function handleDrop(event) {
-    event.preventDefault();
-    const circleId = event.dataTransfer.getData("text/plain");
-    const circle = document.getElementById(circleId);
-    if (circle.id === 'circle1') {
-      audio1.pause();
-    } else if (circle.id === 'circle2') {
-      audio2.pause();
-    } else if (circle.id === 'circle3') {
-      audio3.pause();
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
-  }
 
-  function handleDragOver(event) {
-    event.preventDefault();
-  }
+    return array;
+}
+
+audioBox.forEach(box => box.addEventListener("dragstart", handleStartDrag));
+dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
+dropZones.forEach(zone => zone.addEventListener("drop", handleDrop));
+
