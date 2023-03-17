@@ -1,0 +1,58 @@
+To fix the first bug I updated the function handleDrop code like this
+
+function handleDrop(e) { 
+		e.preventDefault();
+		if (this.children.length > 0) {
+			console.log("Already a piece here");
+			return;
+		}
+		this.appendChild(draggedPiece);
+	}
+
+
+Here I updated the code  If there is already a child element, the function logs a message to the console 
+indicating that "Already a piece here" and returns, which prevents any further action from being taken.
+If there is no child element in the drop zone, the function appends the dragged piece to the drop zone 
+using this.appendChild(draggedPiece). This ensures that only one element can be dropped in a drop zone at a time.
+
+
+To fix the second bug I updated and added code like this
+	
+function newPuzzle() {
+    // Remove all children from the drop zones and move them back to the puzzle piece section
+    dropZones.forEach(zone => {
+      while (zone.children.length > 0) {
+        puzzleBoard.appendChild(zone.children[0]);
+      }
+    });
+
+
+	const selectedButton = document.querySelector('.selected');
+    if (selectedButton) {
+        puzzleBoard.style.backgroundImage = `url(images/backGround${this})`;
+    }
+
+    const puzzlePieceContainer = document.querySelector('.puzzle-pieces');
+  puzzlePieceContainer.innerHTML = '';
+  puzzlePieces.forEach(piece => {
+    puzzlePieceContainer.appendChild(piece);
+  });
+
+  shufflePieces();
+
+  }
+
+
+const buttonHolder = document.querySelector('#buttonHolder');
+buttonHolder.addEventListener('click', newPuzzle);
+
+
+In this code I created a function called newPuzzle that generates a new puzzle 
+on the web page. When called, the function removes all puzzle pieces from the drop zones and moves 
+them back to the puzzle piece section, sets the puzzle board's background image based on the selected 
+button, clears the puzzle piece container, and adds the puzzle pieces back to the container in a shuffled
+ order. Finally, the code adds an event listener to a button holder on the page, which triggers the newPuzzle
+ function when the button is clicked.
+
+
+
