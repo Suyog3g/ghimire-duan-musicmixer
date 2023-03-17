@@ -1,7 +1,6 @@
-# Drag and Drop Reference
+# ghimire-duan-musicmixer
 
-TODO: Write a project description
-
+TODO: This website is a sound therapy website. The main motive of creating this website is to help students relax from all the stress and anxiety. The sounds we have are the traditional sound therapy sounds used in Tibet and Nepal.
 ## Contributing
 
 1. Fork it!
@@ -12,7 +11,8 @@ TODO: Write a project description
 
 ## Credits
 
-TODO: Write credits
+TODO: Suyog and Jintao's Music Mixer
 
 ## License
-MIT
+
+MIT License
