@@ -16,28 +16,58 @@
             <h1> Choose your favourite song</h1>
         </header>
         <main>
-            <div id="instruction">
-                <h2> How to play</h2>
-                <p> Drag and drop your desired song in the big circle from the collection below.</p>
-                <p> Turn off music button to listen just the vocal part and vice versa.</p>
-            </div>
-            <div id="singer-drop">
-                <div id="drop-zone"></div>
-            </div>
-            <div id="music&audio-btn">
-                <button id="music-btn"></button>
-                <button id="audio-btn"></button>
-            </div>
-
-            <div id="audio-controls">
-                <div id="music-control">
-                    <section id="rewind"><ion-icon name="play-back-outline"></ion-icon></section>
-                    <section id="play"><ion-icon name="play-circle-outline"></ion-icon></section>
-                    <section id="pause"> <ion-icon name="play-outline"></ion-icon></section>
+            <div id="htp-sec">
+                <div id="instruction">
+                    <h2> How to play</h2>
+                    <p> Drag and drop your desired song in the big circle from the collection below.</p>
+                    <p> Turn off music button to listen just the vocal part and vice versa.</p>
                 </div>
-                <input id="volumeControl" type="range" min="0" max="100" step="1"></input>
             </div>
+            <div id="drop-sec">
+                <div id="audio-controls">
+                    <audio id="audio1">
+                        <source src="audio/Charlie Puth - Attention (Acapella - Vocals Only) (128 kbps).mp3" type="audio/mpeg">
+                      </audio>
+                      
+                      <audio id="audio2">
+                        <source src="audio/Doja Cat ~ Kiss Me More (ft. SZA) Instrumental (128 kbps).mp3" type="audio/mpeg">
+                      </audio>
+                      
+                      <audio id="audio3">
+                        <source src="audio/Dua Lipa - Don't Start Now (Original Acapella_Vocals Only) (128 kbps).mp3" type="audio/mpeg">
+                      </audio>
+                      
+                      
+                    <div id="music-control">
+                        <section id="rewind"><ion-icon name="play-back-outline"></ion-icon></section>
+                        <section id="play"><ion-icon name="play-circle-outline"></ion-icon></section>
+                        <section id="pause"> <ion-icon name="play-outline"></ion-icon></section>
+                    </div>
+                    <input id="volumeThumb" type="range" min="0" max="100" step="1"></input>
+                </div>
+            </div>
+    
+            <div id="drop-zone" class="drop-zone"></div>
+            <div id="audio-drop-zone" class="drop-zone"></div>
+            <div id="music-drop-zone" class="drop-zone"></div>
 
+            <div class="circles-container">
+                <div class="column">
+                  <div class="circle" draggable="true" id="circle1"></div>
+                  <div class="circle" draggable="true" id="circle2"></div>
+                  <div class="circle" draggable="true" id="circle3"></div>
+                  <div class="circle" draggable="true"></div>
+                </div>
+                <div class="column">
+                  <div class="circle" draggable="true"></div>
+                  <div class="circle" draggable="true"></div>
+                  <div class="circle" draggable="true"></div>
+                  <div class="circle" draggable="true"></div>
+                </div>
+              </div>
+              
+            
+            
         </main>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
