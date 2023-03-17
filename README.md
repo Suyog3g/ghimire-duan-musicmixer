@@ -1,7 +1,6 @@
 # ghimire-duan-musicmixer
 
-TODO: This is our music mixer app. We are planning to seperate famous singer's song and create a stage to mix it all to create a music.
-
+TODO: This website is a sound therapy website. The main motive of creating this website is to help students relax from all the stress and anxiety. The sounds we have are the traditional sound therapy sounds used in Tibet and Nepal.
 ## Contributing
 
 1. Fork it!
