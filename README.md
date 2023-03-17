@@ -1,6 +1,6 @@
-# ghimire-duan-musicmixer
+# Drag and Drop Reference
 
-TODO: This is our music mixer app. We are planning to seperate famous singer's song and create a stage to mix it all to create a music.
+TODO: Write a project description
 
 ## Contributing
 
@@ -12,8 +12,7 @@ TODO: This is our music mixer app. We are planning to seperate famous singer's s
 
 ## Credits
 
-TODO: Suyog and Jintao's Music Mixer
+TODO: Write credits
 
 ## License
-
-MIT License
+MIT
