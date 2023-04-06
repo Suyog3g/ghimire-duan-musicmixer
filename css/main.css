@@ -50,6 +50,16 @@ h3 {
 	font-size: 0.6rem; /* Adjust as needed */
 }
   
+  
+header h1 {
+	font-size: 3em;
+  	letter-spacing: 3px;
+	margin: 10px 0;
+	color: #131847;
+	margin-left: 300px;
+}
+
+
 
 
 
@@ -62,7 +72,7 @@ h3 {
     width: 70%;
     animation: shake 20s infinite;
     transform-origin: 50% 50%;
-}
+  
 
 @keyframes shake {
     0%, 100% { transform: rotate(0deg) translate(0, 0); }
@@ -123,6 +133,7 @@ h3 {
 
 
   
+
 .monk {
 	position: absolute;
 	top: 60%;
@@ -194,6 +205,13 @@ h3 {
 }
 
 .drop-zone h2 {
+=======
+  .button {
+	background-color: #b55405;
+	border: none;	
+	border-radius: 30px;
+	color: white;
+	padding: 15px 32px;
 	text-align: center;
 	margin: auto;
 }
@@ -441,6 +459,77 @@ h3 {
     20%, 40%, 60%, 80% { transform: rotate(2deg) translate(2px, 0); }
 }
 
+/* Set the initial position of the leaves */
+#leaf-01 {
+    position: absolute;
+    top: -50px;
+    left: 1300px;
+    width: 200px;
+  }
+  
+  #leaf-02 {
+    position: absolute;
+    top: -50px;
+    left: 1100px;
+    width: 350px;
+  }
+  
+  #leaf-03 {
+    position: absolute;
+    top: -50px;
+    left: 500px;
+    width: 300px;
+  }
+  
+  #leaf-04 {
+    position: absolute;
+    top: -50px;
+    left: 1200px;
+    width: 280px;
+  }
+  
+  #leaf-05 {
+    position: absolute;
+    top: -50px;
+    left: 1300px;
+    width: 250px;
+  }
+  
+  /* Define the falling animation */
+  @keyframes fall {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(1000px) rotate(360deg);
+    }
+  }
+  
+  /* Apply the animation to the leaves */
+  #leaf-01 {
+    animation: fall 10s linear infinite;
+    animation-delay: 0s;
+  }
+  
+  #leaf-02 {
+    animation: fall 12s linear infinite;
+    animation-delay: 2s;
+  }
+  
+  #leaf-03 {
+    animation: fall 8s linear infinite;
+    animation-delay: 4s;
+  }
+  
+  #leaf-04 {
+    animation: fall 11s linear infinite;
+    animation-delay: 6s;
+  }
+  
+  #leaf-05 {
+    animation: fall 9s linear infinite;
+    animation-delay: 8s;
+  }
 
 
 
@@ -585,6 +674,7 @@ h3 {
 	background-size: 50%;
 	background-repeat: no-repeat;
 }
+
 .b1 {
 	background-image: url(../images/calm.png);
 	background-position: center;
@@ -602,6 +692,21 @@ h3 {
 	background-position: center;
 	background-size: 50%;
 	background-repeat: no-repeat;
+=======
+#music-control {
+    cursor: pointer;
+    display: flex; 
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: space-between;
+    width: 20%; 
+	background-color: #b55405;
+    padding-top: 10px;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;    
 }
 
 
@@ -718,6 +823,7 @@ button:hover {
   
 .play-icon {
 	display: inline-block;
+	z-index: 5;
 }
   
 .pause-icon {
