@@ -1,3 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<title>Sound Therapy</title>
+	</head>
+
+	<body>
+
+		<h1 class="hidden">Sound Therapy</h1>
+
+		<main>
+
+			<section class="header">
+				<h1>Sound Therapy</h1>
+				<img class="bell" src="images/bell.png" alt="bell">
+				<h3>Drag and Drop these instruments to start your sound therapy</h3>
+			</section>
+
+
+			<div id="htp-sec">
+				<div id="instruction">
+					<h2> How to play</h2>
+					<p> Drag the instruments and drop it in the container below to start music</p>
+					<p> Control the volume and pause of play yout music using the music control buttons</p>
+				</div>
+			</div>
+
+
+			<section class="container">
+
+				<img src="images/brown-monk.png" class="monk" alt="monk">
+
+				<div class="music-board">
+
+					<div class="drop-box">
+						<div class="drop-zone a1"></div>
+						<div class="drop-zone b1"></div>
+						<div class="drop-zone c1"></div>
+						<div class="drop-zone d1"></div>
+					</div>
+
+
+					<div class="lineUp">
+						<div class="drag-zone" id="S1zone"><img class="drop-image" src="images/background-ambient.png" alt="background-ambient" id="S1" draggable></div>
+						<div class="drag-zone" id="S2zone"><img class="drop-image" src="images/vocal.png" alt="Girl singing" id="S2" draggable></div>
+						<div class="drag-zone" id="S3zone"><img class="drop-image" src="images/background-rain-chimes.png" alt="background rain and chimes" id="S3" draggable></div>
+						<div class="drag-zone" id="S4zone"><img class="drop-image" src="images/tibetian-bowl.png" alt="Tibetian Singing bowl" id="S4" draggable></div>
+						
+					</div>
+				</div>
+
+
+				<img class="bowl" src="images/bowl.png" alt="bowl">
+
+
+
+				<div class="reset-button">
+					<button class="reset">Reset</button>
+				</div>
+
+
+				<button class="play-pause-button">
+					<span class="play-icon">▶</span>
+					<span class="pause-icon">||</span>
+				</button>
+			</section>
+
+		</main>
+	</body>
+
+	<script src="js/main.js"></script>
+
+=======
 <!doctype html>
 <html>
 <head>
