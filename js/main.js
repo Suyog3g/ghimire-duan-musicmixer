@@ -1,91 +1,92 @@
-let theHeading = document.querySelector("#headLine h1"),
-    theMonk = document.querySelector(".monk"),
-    puzzlePieces = document.querySelectorAll(".Audio-circles img"),
-    dropZones = document.querySelectorAll('.drop-zone'),
-    draggedPiece;
+const
+	lineup = document.querySelector('.lineUp'),
+	dropbox = document.querySelector('.drop-box'),
+	dropZones = document.querySelectorAll('.drop-zone'),
+	dragZones = document.querySelectorAll('.drag-zone');
+	playPauseButton = document.querySelector('.play-pause-button');
+let
+	resetButton = document.querySelector('.reset'),
+	draggableChars = document.querySelectorAll('.drop-image');
 
-function handleStartDrag() { 
-    console.log('started dragging this piece:', this);
-    draggedPiece = this;
-}
+	draggableChars.forEach(piece => {
+		piece.addEventListener("dragstart", function(e) {
+			e.dataTransfer.setData("text/plain", this.id);
+		});
+	});
 
-function handleDragOver(e) { 
-    e.preventDefault();
-    console.log('dragged over me'); 
-}
+	playPauseButton.addEventListener('click', function() {
+		const audioFile = document.querySelector('#audio-file');
+		
+		// If the audio is playing, pause it and change the button to show "Play"
+		if (!audioFile.paused) {
+		  audioFile.pause();
+		  playPauseButton.innerHTML = 'Play';
+		}
+		// If the audio is paused, play it and change the button to show "Pause"
+		else {
+		  audioFile.play();
+		  playPauseButton.innerHTML = 'Pause';
+		}
+	  });
 
-function handleDrop(e) { 
-    e.preventDefault();
-    // Only allow one piece to be dropped in a zone at a time
-    if (this.children.length > 0) {
-        console.log("Already a piece here");
-        return;
-    }
-    this.appendChild(draggedPiece);
+  dropZones.forEach(zone =>{
+      zone.addEventListener("dragover", function(e) {
+          e.preventDefault();
+      	});
+      zone.addEventListener("drop", function(e) {
+          e.preventDefault();
 
-    // Play audio associated with the dropped puzzle piece
-    const audioURL = draggedPiece.getAttribute('data-audio');
-    if (audioURL) {
-        const audio = new Audio(audioURL);
-        audio.play();
-    }
+          let draggedElement = e.dataTransfer.getData("text/plain");
+          console.log(draggedElement);
+        	if (zone.childElementCount == 0 ) {
+//set audio
+	newAudio = document.createElement('audio');
+	newAudio.loop = 'true';
+	newAudio.src = (`audio/${draggedElement}.mp3`);
+	newAudio.setAttribute('id', 'audio-file');
 
-    // Hide puzzle piece
-    draggedPiece.style.display = 'none';
-}
+	zone.classList.remove();
+	zone.classList.add("drag-zone");
 
-function newPuzzle() {
-    // Remove all children from the drop zones and move them back to the puzzle piece section
-    dropZones.forEach(zone => {
-        while (zone.children.length > 0) {
-            theMonk.appendChild(zone.children[0]);
-        }
+    e.target.appendChild(document.querySelector(`#${draggedElement}`));
+	document.querySelector(`#${draggedElement}`).setAttribute("draggable", "false");
+
+	zone.appendChild(newAudio);
+	};
+
+	let audioFile = document.querySelectorAll('#audio-file');
+		audioFile.forEach(file =>{
+		file.currentTime = 0;
+	});
+
+	newAudio.play();
     });
+  });
 
-    // Reset the background image
-    const selectedButton = document.querySelector('.selected');
-    if (selectedButton) {
-        theMonk.style.backgroundImage = `url(images/backGround${selectedButton.id}.jpg)`;
-    }
 
-    const puzzlePieceContainer = document.querySelector('.Audio-circles');
-    puzzlePieceContainer.innerHTML = '';
-    puzzlePieces.forEach(piece => {
-        puzzlePieceContainer.appendChild(piece);
-    });
+  (() => {
+	console.log('link successful')
 
-    // Shuffle the puzzle pieces
-    shuffle(puzzlePieces);
-}
+	function reset(e) {
+		dropZones.forEach(zone => {
+			zone.classList.remove("drag-zone");
+			zone.classList.add("drop-zone");
 
-function shuffle(array) {
-    let currentIndex = array.length;
-    let temporaryValue, randomIndex;
+			if (zone.childElementCount !== 0 ){
 
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+				zone.removeChild(document.getElementById('audio-file'));
 
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
+				piece = zone.firstElementChild;
+	
+				piece.setAttribute("draggable", "true");
 
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+				zoneId = (piece.getAttribute('id')+"zone");
+				dZone = document.querySelector(`#${zoneId}`);
 
-    return array;
-}
+				dZone.appendChild(piece)};
+			});
+		};
 
-const theButtons = document.querySelectorAll("#buttonHolder img");
-theButtons.forEach(button => button.addEventListener("click", function() {
-    theMonk.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
-}));
+	resetButton.addEventListener("click", reset);
 
-puzzlePieces.forEach(piece => piece.addEventListener("dragstart", handleStartDrag));
-dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
-dropZones.forEach(zone => zone.addEventListener("drop", handleDrop));
-
-const buttonHolder = document.querySelector('#buttonHolder');
-buttonHolder.addEventListener('click', newPuzzle);
+})();
